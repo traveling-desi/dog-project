@@ -28,6 +28,16 @@ cd dog-project
 3. Download the [human dataset](https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/lfw.zip).  Unzip the folder and place it in the repo, at location `path/to/dog-project/lfw`.  If you are using a Windows machine, you are encouraged to use [7zip](http://www.7-zip.org/) to extract the folder. 
 
 4. Donwload the [VGG-16 bottleneck features](https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogVGG16Data.npz) for the dog dataset.  Place it in the repo, at location `path/to/dog-project/bottleneck_features`.
+```
+wget https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/dogImages.zip
+wget https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/lfw.zip
+wget https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogVGG16Data.npz
+wget https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogVGG19Data.npz
+wget https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogResnet50Data.npz
+wget https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogInceptionV3Data.npz
+wget https://s3-us-west-1.amazonaws.com/udacity-aind/dog-project/DogXceptionData.npz
+```
+
 
 5. (Optional) __If you plan to install TensorFlow with GPU support on your local machine__, follow [the guide](https://www.tensorflow.org/install/) to install the necessary NVIDIA software on your system.  If you are using an EC2 GPU instance, you can skip this step.
 
@@ -75,6 +85,18 @@ cd dog-project
 8. (Optional) **If you are using AWS**, install Tensorflow.
 ```
 sudo python3 -m pip install -r requirements/requirements-gpu.txt
+conda install keras==2.0.2
+conda install --channel https://conda.anaconda.org/menpo opencv3
+conda install tqdm
+KERAS_BACKEND=tensorflow python -c "from keras import backend"
+
+
+jupyter notebook --generate-config
+sed -ie "s/#c.NotebookApp.ip = 'localhost'/#c.NotebookApp.ip = '*'/g" ~/.jupyter/jupyter_notebook_config.py
+jupyter notebook --ip=0.0.0.0 --no-browser
+
+bring up jupyter as: X.X.X.X:8888/?token=... (where X.X.X.X is the IP address of your EC2 instance)
+
 ```
 	
 9. Switch [Keras backend](https://keras.io/backend/) to TensorFlow.
